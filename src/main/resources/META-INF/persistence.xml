@@ -6,6 +6,8 @@
     <class>com.mycompany.proyecto.logica.Usuario</class>
     <class>com.mycompany.proyecto.logica.Especialidad</class>
     <class>com.mycompany.proyecto.logica.Estatus</class>
+    <class>com.mycompany.proyecto.logica.Medico</class>
+    <class>com.mycompany.proyecto.logica.Reservacion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/polimed?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

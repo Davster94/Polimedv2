@@ -1,4 +1,3 @@
-
 package com.mycompany.proyecto.logica;
 
 import java.io.Serializable;
@@ -38,6 +37,11 @@ public class Estatus implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Estatus{" + "id=" + id + ", estado=" + estado + '}';
     }
     
     

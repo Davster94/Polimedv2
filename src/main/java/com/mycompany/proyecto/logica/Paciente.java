@@ -154,6 +154,11 @@ public class Paciente implements Serializable {
     public void setFecharegistro(Date fecharegistro) {
         this.fecharegistro = fecharegistro;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "id=" + id + ", nombrepac=" + nombrepac + ", apellidopac=" + apellidopac + ", genero=" + genero + ", email=" + email + ", direccion=" + direccion + ", telefono=" + telefono + ", enfermedad=" + enfermedad + ", alergia=" + alergia + ", medicamento=" + medicamento + ", activo=" + activo + ", fechanacimiento=" + fechanacimiento + ", fecharegistro=" + fecharegistro + '}';
+    }
     
     
 

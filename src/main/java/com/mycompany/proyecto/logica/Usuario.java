@@ -113,6 +113,11 @@ public class Usuario implements Serializable {
     public void setFecharegistro(Date fecharegistro) {
         this.fecharegistro = fecharegistro;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", username=" + username + ", password=" + password + ", nombre_user=" + nombre_user + ", apellido_usuario=" + apellido_usuario + ", email_user=" + email_user + ", activo=" + activo + ", admi=" + admi + ", fecharegistro=" + fecharegistro + '}';
+    }
     
     
 }

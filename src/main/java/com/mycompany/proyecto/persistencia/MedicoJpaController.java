@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.proyecto.persistencia;
 
-import com.mycompany.proyecto.logica.Estatus;
+import com.mycompany.proyecto.logica.Medico;
 import com.mycompany.proyecto.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -16,17 +12,14 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author dalej
- */
-public class EstatusJpaController implements Serializable {
 
-    public EstatusJpaController(EntityManagerFactory emf) {
+public class MedicoJpaController implements Serializable {
+
+    public MedicoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     
-     public EstatusJpaController(){
+     public MedicoJpaController(){
      emf= Persistence.createEntityManagerFactory("proJPAPU"); 
     }
     
@@ -36,12 +29,12 @@ public class EstatusJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Estatus estatus) {
+    public void create(Medico medico) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estatus);
+            em.persist(medico);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -50,19 +43,19 @@ public class EstatusJpaController implements Serializable {
         }
     }
 
-    public void edit(Estatus estatus) throws NonexistentEntityException, Exception {
+    public void edit(Medico medico) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            estatus = em.merge(estatus);
+            medico = em.merge(medico);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = estatus.getId();
-                if (findEstatus(id) == null) {
-                    throw new NonexistentEntityException("The estatus with id " + id + " no longer exists.");
+                int id = medico.getId();
+                if (findMedico(id) == null) {
+                    throw new NonexistentEntityException("The medico with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -78,14 +71,14 @@ public class EstatusJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estatus estatus;
+            Medico medico;
             try {
-                estatus = em.getReference(Estatus.class, id);
-                estatus.getId();
+                medico = em.getReference(Medico.class, id);
+                medico.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estatus with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The medico with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estatus);
+            em.remove(medico);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +87,19 @@ public class EstatusJpaController implements Serializable {
         }
     }
 
-    public List<Estatus> findEstatusEntities() {
-        return findEstatusEntities(true, -1, -1);
+    public List<Medico> findMedicoEntities() {
+        return findMedicoEntities(true, -1, -1);
     }
 
-    public List<Estatus> findEstatusEntities(int maxResults, int firstResult) {
-        return findEstatusEntities(false, maxResults, firstResult);
+    public List<Medico> findMedicoEntities(int maxResults, int firstResult) {
+        return findMedicoEntities(false, maxResults, firstResult);
     }
 
-    private List<Estatus> findEstatusEntities(boolean all, int maxResults, int firstResult) {
+    private List<Medico> findMedicoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Estatus.class));
+            cq.select(cq.from(Medico.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,20 +111,20 @@ public class EstatusJpaController implements Serializable {
         }
     }
 
-    public Estatus findEstatus(int id) {
+    public Medico findMedico(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Estatus.class, id);
+            return em.find(Medico.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstatusCount() {
+    public int getMedicoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Estatus> rt = cq.from(Estatus.class);
+            Root<Medico> rt = cq.from(Medico.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

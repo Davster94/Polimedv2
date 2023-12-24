@@ -38,6 +38,11 @@ public class Especialidad implements Serializable {
     public void setNombespec(String nombespec) {
         this.nombespec = nombespec;
     }
+
+    @Override
+    public String toString() {
+        return "Especialidad{" + "id=" + id + ", nombespec=" + nombespec + '}';
+    }
     
     
     
