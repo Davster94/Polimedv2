@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Reservacion implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     @Basic
     private String titulo;

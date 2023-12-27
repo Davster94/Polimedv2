@@ -132,5 +132,9 @@ public class PacienteJpaController implements Serializable {
             em.close();
         }
     }
+
+    Paciente findUsuario(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

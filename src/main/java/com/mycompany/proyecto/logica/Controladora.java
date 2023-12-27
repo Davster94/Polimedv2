@@ -24,7 +24,7 @@ public class Controladora {
       return controlPersis.traerListaPacientes();
     }
     //Usuario
-   /* public void crearUsuario(Usuario usu){
+    public void crearUsuario(Usuario usu){
     controlPersis.crearUsuario(usu);
     }
      public void eliminarUsuario(int id){
@@ -33,7 +33,7 @@ public class Controladora {
     public void editarUsuario(Usuario usu){
     controlPersis.editarUsuario(usu);
     }
-    public Usuario traerUsuario(int id){
+    public Paciente traerUsuario(int id){
     return controlPersis.traerUsuario(id);
     }
     public ArrayList<Usuario> traerListaUsuarios(){
@@ -53,7 +53,7 @@ public class Controladora {
     return controlPersis.traerEspecialidad(id);
     }
     public ArrayList<Especialidad> traerListaEspecialidades(){
-      return controlPersis.traerListaEspecialidadess();
+      return controlPersis.traerListaEspecialidades();
     }
     //Medico
      public void crearMedico(Medico med){
@@ -87,5 +87,5 @@ public class Controladora {
     public ArrayList<Reservacion> traerListaReservaciones(){
       return controlPersis.traerListaReservaciones();
     }
-    */
+    
 }

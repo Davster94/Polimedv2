@@ -2,11 +2,13 @@ package com.mycompany.proyecto.logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,7 +16,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Medico implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     @Basic
     private String nombre_med;
@@ -32,10 +34,12 @@ public class Medico implements Serializable {
     @OneToOne
     private Especialidad esp;
 
+    @OneToMany(mappedBy="med")
+    private LinkedList<Reservacion> listaReservaciones;
     public Medico() {
     }
 
-    public Medico(int id, String nombre_med, String apellido_med, String genero_med, String email_med, String direccion_med, String telefono, Boolean activo, Date fechanacimiento, Date fecharegistro, Especialidad esp) {
+    public Medico(int id, String nombre_med, String apellido_med, String genero_med, String email_med, String direccion_med, String telefono, Boolean activo, Date fechanacimiento, Date fecharegistro, Especialidad esp, LinkedList<Reservacion> listaReservaciones) {
         this.id = id;
         this.nombre_med = nombre_med;
         this.apellido_med = apellido_med;
@@ -47,9 +51,8 @@ public class Medico implements Serializable {
         this.fechanacimiento = fechanacimiento;
         this.fecharegistro = fecharegistro;
         this.esp = esp;
+        this.listaReservaciones = listaReservaciones;
     }
-
-   
 
     public int getId() {
         return id;
@@ -139,10 +142,20 @@ public class Medico implements Serializable {
         this.esp = esp;
     }
 
+    public LinkedList<Reservacion> getListaReservaciones() {
+        return listaReservaciones;
+    }
+
+    public void setListaReservaciones(LinkedList<Reservacion> listaReservaciones) {
+        this.listaReservaciones = listaReservaciones;
+    }
+
     @Override
     public String toString() {
-        return "Medico{" + "id=" + id + ", nombre_med=" + nombre_med + ", apellido_med=" + apellido_med + ", genero_med=" + genero_med + ", email_med=" + email_med + ", direccion_med=" + direccion_med + ", telefono=" + telefono + ", activo=" + activo + ", fechanacimiento=" + fechanacimiento + ", fecharegistro=" + fecharegistro + ", esp=" + esp + '}';
+        return "Medico{" + "id=" + id + ", nombre_med=" + nombre_med + ", apellido_med=" + apellido_med + ", genero_med=" + genero_med + ", email_med=" + email_med + ", direccion_med=" + direccion_med + ", telefono=" + telefono + ", activo=" + activo + ", fechanacimiento=" + fechanacimiento + ", fecharegistro=" + fecharegistro + ", esp=" + esp + ", listaReservaciones=" + listaReservaciones + '}';
     }
+
+   
 
    
 

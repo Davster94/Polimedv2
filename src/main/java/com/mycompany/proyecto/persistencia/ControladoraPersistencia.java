@@ -1,7 +1,9 @@
 package com.mycompany.proyecto.persistencia;
 
 import com.mycompany.proyecto.logica.Especialidad;
+import com.mycompany.proyecto.logica.Medico;
 import com.mycompany.proyecto.logica.Paciente;
+import com.mycompany.proyecto.logica.Reservacion;
 import com.mycompany.proyecto.logica.Usuario;
 import com.mycompany.proyecto.persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class ControladoraPersistencia {
           return  listaPacientes;
     }
 
-   /* 
+   
       //Usuario
       public void crearUsuario(Usuario usu) {
       usuJpa.create(usu);
@@ -60,13 +62,20 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      public void editarUsuario(Usuario usu) {
+        try{
+           usuJpa.edit(usu);
+       }catch(Exception ex){
+         Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
+       }
+    }
       public Paciente traerUsuario(int id) {
         return pacJpa.findUsuario(id);
     }
       public ArrayList<Usuario> traerListaUsuarios() {
        
           List<Usuario> listaus = usuJpa.findUsuarioEntities();
-          ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>(listausu);
+          ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>(listaus);
           return  listaUsuarios;
     }
       //Especialidad
@@ -80,6 +89,13 @@ public class ControladoraPersistencia {
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+      public void editarEspecialidad(Especialidad esp) {
+        try{
+           espJpa.edit(esp);
+       }catch(Exception ex){
+         Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
+       }
     }
       public Especialidad traerEspecialidad(int id) {
         return espJpa.findEspecialidad(id);
@@ -102,6 +118,13 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public void editarMedico(Medico med) {
+       try{
+           medJpa.edit(med);
+       }catch(Exception ex){
+         Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
+       }
+    }
       public Medico traerMedico(int id) {
         return medJpa.findMedico(id);
     }
@@ -123,6 +146,14 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      public void editarReservacion(Reservacion res) {
+       try{
+           resJpa.edit(res);
+       }catch(Exception ex){
+         Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
+       }
+    }
+     
       public Reservacion traerReservacion(int id) {
         return resJpa.findReservacion(id);
     }
@@ -131,12 +162,5 @@ public class ControladoraPersistencia {
           List<Reservacion> listares = resJpa.findReservacionEntities();
           ArrayList<Reservacion> listaReservaciones = new ArrayList<Reservacion>(listares);
           return  listaReservaciones;
-    }
-     */
-
-    
-
-   
-
-   
+    }     
 }

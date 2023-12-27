@@ -9,8 +9,8 @@ import com.mycompany.proyecto.logica.Reservacion;
 import static com.mycompany.proyecto.logica.Reservacion_.est;
 import static com.mycompany.proyecto.logica.Reservacion_.med;
 import com.mycompany.proyecto.logica.Usuario;
-import java.sql.Time;
 import java.util.Date;
+import java.util.LinkedList;
 
 
 
@@ -32,8 +32,14 @@ public class Proyecto {
        Reservacion res3= new Reservacion(3, "ResOdon3", "El paciente sufre de fuerte dolor de muela", "", "Fiebre,dolor de cabeza,mareo,vomito", "", "", Boolean.TRUE, new Date(),Time(""), new Date(),med,est , usu, pac);
        
 //Guardar en bd
-       control.crearReservacion(res);
-        
+       control.crearReservacion(res1);
+       control.crearReservacion(res2);
+       control.crearReservacion(res3);
+       //Creacion de lista de reservaciones
+       LinkedList<Reservacion> listaReservacion = new LinkedList<Reservacion>();
+        listaReservacion.add(res1);
+        listaReservacion.add(res2);
+        listaReservacion.add(res3);
      //Creacion de especialidad
      Especialidad esp1 = new Especialidad(001, "Odontologia");
      Especialidad esp2 = new Especialidad(002, "Fisioterapia");
@@ -43,8 +49,13 @@ public class Proyecto {
      control.crearEspecialidad(esp1);
      control.crearEspecialidad(esp2);
      control.crearEspecialidad(esp3);
+     //Creacion de lista de especialidades
+     LinkedList<Especialidad> listaEspecialidad = new LinkedList<Especialidad>();
+     listaEspecialidad.add(esp1);
+     listaEspecialidad.add(esp2);
+     listaEspecialidad.add(esp3);
      
      //Registro de medicos con especialidad
-     Medico med= new Medico(1, "Alfred", "Bonifaz", "Masculino", "bifaz72@gmail.com", "Barrio nuevo", "099542234", Boolean.TRUE, new Date(), new Date(), esp4, listaReservaciones);
+     Medico med= new Medico(1, "Alfred", "Bonifaz", "Masculino", "bifaz72@gmail.com", "Barrio nuevo", "099542234", Boolean.TRUE, new Date(), new Date(), listaEspecialidad, listaReservacion);
     }
 }
