@@ -27,8 +27,8 @@ public class Reservacion implements Serializable {
     private Boolean conectado;
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Temporal(TemporalType.TIME)
-    private Date hora;
+    /*@Temporal(TemporalType.TIME)
+    private Date hora;*/
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechacreacion;
     
@@ -44,7 +44,7 @@ public class Reservacion implements Serializable {
     public Reservacion() {
     }
 
-    public Reservacion(int id, String titulo, String nota, String mensaje, String sintomas, String enfermedad, String medicamento, Boolean conectado, Date fecha, Date hora, Date fechacreacion, Estatus est, Usuario usu, Medico med, Paciente pac) {
+    public Reservacion(int id, String titulo, String nota, String mensaje, String sintomas, String enfermedad, String medicamento, Boolean conectado, Date fecha,Date fechacreacion, Estatus est, Usuario usu, Medico med, Paciente pac) {
         this.id = id;
         this.titulo = titulo;
         this.nota = nota;
@@ -54,7 +54,7 @@ public class Reservacion implements Serializable {
         this.medicamento = medicamento;
         this.conectado = conectado;
         this.fecha = fecha;
-        this.hora = hora;
+        /*this.hora = hora;*/
         this.fechacreacion = fechacreacion;
         this.est = est;
         this.usu = usu;
@@ -136,13 +136,13 @@ public class Reservacion implements Serializable {
         this.fecha = fecha;
     }
 
-    public Date getHora() {
+  /*  public Date getHora() {
         return hora;
     }
 
     public void setHora(Date hora) {
         this.hora = hora;
-    }
+    }*/
 
     public Date getFechacreacion() {
         return fechacreacion;
@@ -186,7 +186,7 @@ public class Reservacion implements Serializable {
 
     @Override
     public String toString() {
-        return "Reservacion{" + "id=" + id + ", titulo=" + titulo + ", nota=" + nota + ", mensaje=" + mensaje + ", sintomas=" + sintomas + ", enfermedad=" + enfermedad + ", medicamento=" + medicamento + ", conectado=" + conectado + ", fecha=" + fecha + ", hora=" + hora + ", fechacreacion=" + fechacreacion + ", est=" + est + ", usu=" + usu + ", med=" + med + ", pac=" + pac + '}';
+        return "Reservacion{" + "id=" + id + ", titulo=" + titulo + ", nota=" + nota + ", mensaje=" + mensaje + ", sintomas=" + sintomas + ", enfermedad=" + enfermedad + ", medicamento=" + medicamento + ", conectado=" + conectado + ", fecha=" + fecha + ",  fechacreacion=" + fechacreacion + ", est=" + est + ", usu=" + usu + ", med=" + med + ", pac=" + pac + '}';
     }
 
    

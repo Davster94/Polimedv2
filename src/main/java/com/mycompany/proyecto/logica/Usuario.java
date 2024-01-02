@@ -1,4 +1,3 @@
-
 package com.mycompany.proyecto.logica;
 
 import java.io.Serializable;
