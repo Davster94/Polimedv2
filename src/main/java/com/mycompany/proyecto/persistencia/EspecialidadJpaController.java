@@ -17,10 +17,10 @@ public class EspecialidadJpaController implements Serializable {
     public EspecialidadJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    
      public EspecialidadJpaController(){
      emf= Persistence.createEntityManagerFactory("proJPAPU"); ;
     }
+    
     
     private EntityManagerFactory emf = null;
 
@@ -52,7 +52,7 @@ public class EspecialidadJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = especialidad.getId();
+                Long id = especialidad.getId();
                 if (findEspecialidad(id) == null) {
                     throw new NonexistentEntityException("The especialidad with id " + id + " no longer exists.");
                 }
@@ -65,7 +65,7 @@ public class EspecialidadJpaController implements Serializable {
         }
     }
 
-    public void destroy(int id) throws NonexistentEntityException {
+    public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -110,7 +110,7 @@ public class EspecialidadJpaController implements Serializable {
         }
     }
 
-    public Especialidad findEspecialidad(int id) {
+    public Especialidad findEspecialidad(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Especialidad.class, id);

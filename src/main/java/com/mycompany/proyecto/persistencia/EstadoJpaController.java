@@ -1,6 +1,6 @@
 package com.mycompany.proyecto.persistencia;
 
-import com.mycompany.proyecto.logica.Medico;
+import com.mycompany.proyecto.logica.Estado;
 import com.mycompany.proyecto.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -13,13 +13,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 
-public class MedicoJpaController implements Serializable {
+public class EstadoJpaController implements Serializable {
 
-    public MedicoJpaController(EntityManagerFactory emf) {
+    public EstadoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     
-     public MedicoJpaController(){
+     public EstadoJpaController(){
      emf= Persistence.createEntityManagerFactory("proJPAPU"); ;
     }
     private EntityManagerFactory emf = null;
@@ -28,12 +28,12 @@ public class MedicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Medico medico) {
+    public void create(Estado estado) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(medico);
+            em.persist(estado);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -42,19 +42,19 @@ public class MedicoJpaController implements Serializable {
         }
     }
 
-    public void edit(Medico medico) throws NonexistentEntityException, Exception {
+    public void edit(Estado estado) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            medico = em.merge(medico);
+            estado = em.merge(estado);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = medico.getId();
-                if (findMedico(id) == null) {
-                    throw new NonexistentEntityException("The medico with id " + id + " no longer exists.");
+                Long id = estado.getId();
+                if (findEstado(id) == null) {
+                    throw new NonexistentEntityException("The estado with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -70,14 +70,14 @@ public class MedicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Medico medico;
+            Estado estado;
             try {
-                medico = em.getReference(Medico.class, id);
-                medico.getId();
+                estado = em.getReference(Estado.class, id);
+                estado.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The medico with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The estado with id " + id + " no longer exists.", enfe);
             }
-            em.remove(medico);
+            em.remove(estado);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -86,19 +86,19 @@ public class MedicoJpaController implements Serializable {
         }
     }
 
-    public List<Medico> findMedicoEntities() {
-        return findMedicoEntities(true, -1, -1);
+    public List<Estado> findEstadoEntities() {
+        return findEstadoEntities(true, -1, -1);
     }
 
-    public List<Medico> findMedicoEntities(int maxResults, int firstResult) {
-        return findMedicoEntities(false, maxResults, firstResult);
+    public List<Estado> findEstadoEntities(int maxResults, int firstResult) {
+        return findEstadoEntities(false, maxResults, firstResult);
     }
 
-    private List<Medico> findMedicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Estado> findEstadoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Medico.class));
+            cq.select(cq.from(Estado.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -110,20 +110,20 @@ public class MedicoJpaController implements Serializable {
         }
     }
 
-    public Medico findMedico(Long id) {
+    public Estado findEstado(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Medico.class, id);
+            return em.find(Estado.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getMedicoCount() {
+    public int getEstadoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Medico> rt = cq.from(Medico.class);
+            Root<Estado> rt = cq.from(Estado.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

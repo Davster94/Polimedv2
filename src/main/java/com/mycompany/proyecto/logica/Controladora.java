@@ -2,6 +2,7 @@ package com.mycompany.proyecto.logica;
 
 import com.mycompany.proyecto.persistencia.ControladoraPersistencia;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controladora {
@@ -20,8 +21,12 @@ public class Controladora {
     public Paciente traerPaciente(int id){
     return controlPersis.traerPaciente(id);
     }
-    public ArrayList<Paciente> traerListaPacientes(){
-      return controlPersis.traerListaPacientes();
+    public ArrayList<Paciente> traerListaPacientes(Paciente pac){
+        List<Paciente> lista = controlPersis.traerListaPacientes();
+        ArrayList<Paciente> listaPacientes = new ArrayList<>(lista);
+        return listaPacientes;
+     
+// return controlPersis.traerListaPacientes();
     }
     //Usuario
     public void crearUsuario(Usuario usu){
@@ -33,11 +38,15 @@ public class Controladora {
     public void editarUsuario(Usuario usu){
     controlPersis.editarUsuario(usu);
     }
-    public Paciente traerUsuario(int id){
+    public Usuario traerUsuario(int id){
     return controlPersis.traerUsuario(id);
     }
     public ArrayList<Usuario> traerListaUsuarios(){
-      return controlPersis.traerListaUsuarios();
+        List<Usuario> lista = controlPersis.traerListaUsuarios();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>(lista);
+        return listaUsuarios;
+      
+//return controlPersis.traerListaUsuarios();
     }
     //Especailidad
      public void crearEspecialidad(Especialidad esp){
@@ -53,7 +62,11 @@ public class Controladora {
     return controlPersis.traerEspecialidad(id);
     }
     public ArrayList<Especialidad> traerListaEspecialidades(){
-      return controlPersis.traerListaEspecialidades();
+        List<Especialidad> lista = controlPersis.traerListaEspecialidades();
+        ArrayList<Especialidad> listaEspecialidades = new ArrayList<>(lista);
+        return listaEspecialidades;
+      
+//return controlPersis.traerListaEspecialidades();
     }
     //Medico
      public void crearMedico(Medico med){
@@ -69,7 +82,11 @@ public class Controladora {
     return controlPersis.traerMedico(id);
     }
     public ArrayList<Medico> traerListaMedicos(){
-      return controlPersis.traerListaMedicos();
+        List<Medico> lista = controlPersis.traerListaMedicos();
+        ArrayList<Medico> listaMedicos = new ArrayList<>(lista);
+        return listaMedicos;
+      
+//return controlPersis.traerListaMedicos();
     }
     //Reservacion
      public void crearReservacion(Reservacion res){
@@ -85,7 +102,33 @@ public class Controladora {
     return controlPersis.traerReservacion(id);
     }
     public ArrayList<Reservacion> traerListaReservaciones(){
-      return controlPersis.traerListaReservaciones();
+      List<Reservacion> lista = controlPersis.traerListaReservaciones();
+        ArrayList<Reservacion> listaReservaciones = new ArrayList<>(lista);
+        return listaReservaciones;
+//return controlPersis.traerListaReservaciones();
+    }
+    // Estado
+    public void crearEstado(Estado estado) {
+        controlPersis.crearEstado(estado);
+    }
+
+    public void eliminarEstado(long id) {
+        controlPersis.eliminarEstado(id);
+    }
+
+    public void editarEstado(Estado estado) {
+        controlPersis.editarEstado(estado);
+    }
+
+    public Estado traerEstado(long id) {
+        return controlPersis.traerEstado(id);
+    }
+
+    public ArrayList<Estado> traerListaEstados() {
+        List<Estado> lista = controlPersis.traerListaEstados();
+        ArrayList<Estado> listaEstados = new ArrayList<>(lista);
+        return listaEstados;
+        //return controlPersis.traerListaEstados();
     }
     
 }

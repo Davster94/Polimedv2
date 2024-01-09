@@ -1,6 +1,7 @@
 package com.mycompany.proyecto.persistencia;
 
 import com.mycompany.proyecto.logica.Especialidad;
+import com.mycompany.proyecto.logica.Estado;
 import com.mycompany.proyecto.logica.Medico;
 import com.mycompany.proyecto.logica.Paciente;
 import com.mycompany.proyecto.logica.Reservacion;
@@ -16,7 +17,7 @@ public class ControladoraPersistencia {
     PacienteJpaController pacJpa = new PacienteJpaController();
     UsuarioJpaController usuJpa = new UsuarioJpaController();
     EspecialidadJpaController espJpa = new EspecialidadJpaController();
-    EstatusJpaController estJpa = new EstatusJpaController();
+    EstadoJpaController estJpa = new EstadoJpaController();
     MedicoJpaController medJpa = new MedicoJpaController();
     ReservacionJpaController resJpa = new ReservacionJpaController();
 
@@ -25,7 +26,7 @@ public class ControladoraPersistencia {
       pacJpa.create(pac);
     }
     
-     public void eliminarPaciente(int id) {
+     public void eliminarPaciente(long id) {
         try {
             pacJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -39,7 +40,7 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
       }
-      public Paciente traerPaciente(int id) {
+      public Paciente traerPaciente(long id) {
         return pacJpa.findPaciente(id);
     }
       public ArrayList<Paciente> traerListaPacientes() {
@@ -47,7 +48,9 @@ public class ControladoraPersistencia {
           List<Paciente> lista = pacJpa.findPacienteEntities();
           ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>(lista);
           return  listaPacientes;
+      
     }
+    
 
    
       //Usuario
@@ -55,7 +58,7 @@ public class ControladoraPersistencia {
       usuJpa.create(usu);
     }
      
-      public void eliminarUsuario(int id) {
+      public void eliminarUsuario(long id) {
         try {
             usuJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -69,8 +72,8 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
     }
-      public Paciente traerUsuario(int id) {
-        return pacJpa.findUsuario(id);
+      public Usuario traerUsuario(long id) {
+        return usuJpa.findUsuario(id);
     }
       public ArrayList<Usuario> traerListaUsuarios() {
        
@@ -78,12 +81,13 @@ public class ControladoraPersistencia {
           ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>(listaus);
           return  listaUsuarios;
     }
+       
       //Especialidad
 
     public void crearEspecialidad(Especialidad esp) {
         espJpa.create(esp);
     }
-      public void eliminarEspecialidad(int id) {
+      public void eliminarEspecialidad(long id) {
         try {
             espJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -97,7 +101,7 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
     }
-      public Especialidad traerEspecialidad(int id) {
+      public Especialidad traerEspecialidad(long id) {
         return espJpa.findEspecialidad(id);
     }
       public ArrayList<Especialidad> traerListaEspecialidades() {
@@ -106,12 +110,13 @@ public class ControladoraPersistencia {
           ArrayList<Especialidad> listaEspecialidades = new ArrayList<Especialidad>(listaesp);
           return  listaEspecialidades;
     }
+    
       //Medico
        public void crearMedico(Medico med) {
       medJpa.create(med);
     }
     
-     public void eliminarMedico(int id) {
+     public void eliminarMedico(long id) {
         try {
             medJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -125,7 +130,7 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
     }
-      public Medico traerMedico(int id) {
+      public Medico traerMedico(long id) {
         return medJpa.findMedico(id);
     }
       public ArrayList<Medico> traerListaMedicos() {
@@ -134,12 +139,13 @@ public class ControladoraPersistencia {
           ArrayList<Medico> listaMedicos = new ArrayList<Medico>(listamed);
           return  listaMedicos;
     }
+       
       //Reservacion
        public void crearReservacion(Reservacion res) {
       resJpa.create(res);
     }
     
-     public void eliminarReservacion(int id) {
+     public void eliminarReservacion(long id) {
         try {
             resJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -154,7 +160,7 @@ public class ControladoraPersistencia {
        }
     }
      
-      public Reservacion traerReservacion(int id) {
+      public Reservacion traerReservacion(long id) {
         return resJpa.findReservacion(id);
     }
       public ArrayList<Reservacion> traerListaReservaciones() {
@@ -162,5 +168,35 @@ public class ControladoraPersistencia {
           List<Reservacion> listares = resJpa.findReservacionEntities();
           ArrayList<Reservacion> listaReservaciones = new ArrayList<Reservacion>(listares);
           return  listaReservaciones;
-    }     
+    } 
+      // Estado
+    public void crearEstado(Estado estado) {
+        estJpa.create(estado);
+    }
+
+    public void eliminarEstado(long id) {
+        try {
+            estJpa.destroy(id);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editarEstado(Estado estado) {
+        try {
+            estJpa.edit(estado);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Estado traerEstado(long id) {
+        return estJpa.findEstado(id);
+    }
+
+    public ArrayList<Estado> traerListaEstados() {
+        List<Estado> listaEstados = estJpa.findEstadoEntities();
+        return new ArrayList<>(listaEstados);
+    }
+     
 }

@@ -9,23 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="especialidad")
-public class Especialidad implements Serializable {
+@Table(name="estado")
+public class Estado implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy= GenerationType.AUTO)
     //private int id;
      @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic
-    private String nombespec;
-    
+    private String estado;
 
-    public Especialidad() {
+    public Estado() {
     }
 
-    /*public Especialidad(int id, String nombespec) {
+    /*public Estado(int id, String estado) {
         this.id = id;
-        this.nombespec = nombespec;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -36,22 +35,22 @@ public class Especialidad implements Serializable {
         this.id = id;
     }
 
-    public String getNombespec() {
-        return nombespec;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setNombespec(String nombespec) {
-        this.nombespec = nombespec;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Especialidad{" + "id=" + id + ", nombespec=" + nombespec + '}';
+        return "Estatus{" + "id=" + id + ", estado=" + estado + '}';
     }*/
 
-    public Especialidad(Long id, String nombespec) {
+    public Estado(Long id, String estado) {
         this.id = id;
-        this.nombespec = nombespec;
+        this.estado = estado;
     }
 
     public Long getId() {
@@ -62,19 +61,18 @@ public class Especialidad implements Serializable {
         this.id = id;
     }
 
-    public String getNombespec() {
-        return nombespec;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setNombespec(String nombespec) {
-        this.nombespec = nombespec;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Especialidad{" + "id=" + id + ", nombespec=" + nombespec + '}';
+        return "Estado{" + "id=" + id + ", estado=" + estado + '}';
     }
-    
     
     
     

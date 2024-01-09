@@ -1,3 +1,4 @@
+
 package com.mycompany.proyecto.persistencia;
 
 import com.mycompany.proyecto.logica.Reservacion;
@@ -19,10 +20,9 @@ public class ReservacionJpaController implements Serializable {
         this.emf = emf;
     }
     
-      public ReservacionJpaController(){
-     emf= Persistence.createEntityManagerFactory("proJPAPU"); 
+     public ReservacionJpaController(){
+     emf= Persistence.createEntityManagerFactory("proJPAPU"); ;
     }
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -53,7 +53,7 @@ public class ReservacionJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = reservacion.getId();
+                Long id = reservacion.getId();
                 if (findReservacion(id) == null) {
                     throw new NonexistentEntityException("The reservacion with id " + id + " no longer exists.");
                 }
@@ -66,7 +66,7 @@ public class ReservacionJpaController implements Serializable {
         }
     }
 
-    public void destroy(int id) throws NonexistentEntityException {
+    public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -111,7 +111,7 @@ public class ReservacionJpaController implements Serializable {
         }
     }
 
-    public Reservacion findReservacion(int id) {
+    public Reservacion findReservacion(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Reservacion.class, id);
