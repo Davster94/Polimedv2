@@ -77,5 +77,4 @@ public class Especialidad implements Serializable {
     
     
     
-    
 }

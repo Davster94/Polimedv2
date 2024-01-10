@@ -1,4 +1,3 @@
-
 package com.mycompany.proyecto.persistencia;
 
 import com.mycompany.proyecto.logica.Usuario;
