@@ -2,7 +2,6 @@ package com.mycompany.proyecto.logica;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +18,7 @@ public class Usuario implements Serializable {
    // @GeneratedValue(strategy=GenerationType.AUTO)
     //private int id;
      @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Basic
+    private Long id; 
     private String username;
     private String password;
     private String nombre_user;

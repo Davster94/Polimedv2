@@ -131,5 +131,14 @@ public class EstadoJpaController implements Serializable {
             em.close();
         }
     }
+    public List<Estado> obtenerTiposDeEstados() {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT e FROM Estado e");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     
 }

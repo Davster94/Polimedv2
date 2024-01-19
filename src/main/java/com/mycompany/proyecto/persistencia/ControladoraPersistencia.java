@@ -21,6 +21,7 @@ public class ControladoraPersistencia {
     MedicoJpaController medJpa = new MedicoJpaController();
     ReservacionJpaController resJpa = new ReservacionJpaController();
 
+     
     //Paciente
     public void crearPaciente(Paciente pac) {
       pacJpa.create(pac);
@@ -40,7 +41,11 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
       }
-      public Paciente traerPaciente(long id) {
+       public List<Paciente> traerPacientes() {
+        return pacJpa.findPacienteEntities();
+    }
+      
+     /* public Paciente traerPaciente(long id) {
         return pacJpa.findPaciente(id);
     }
       public ArrayList<Paciente> traerListaPacientes() {
@@ -49,7 +54,7 @@ public class ControladoraPersistencia {
           ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>(lista);
           return  listaPacientes;
       
-    }
+    }*/
     
 
    
@@ -72,15 +77,16 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
     }
-      public Usuario traerUsuario(long id) {
-        return usuJpa.findUsuario(id);
+      public List<Usuario> traerUsuarios() {
+          List<Usuario>listaUsuarios= usuJpa.findUsuarioEntities();
+        return listaUsuarios;
     }
-      public ArrayList<Usuario> traerListaUsuarios() {
+     /* public ArrayList<Usuario> traerListaUsuarios() {
        
           List<Usuario> listaus = usuJpa.findUsuarioEntities();
           ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>(listaus);
           return  listaUsuarios;
-    }
+    }*/
        
       //Especialidad
 
@@ -130,7 +136,12 @@ public class ControladoraPersistencia {
          Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,null,ex);
        }
     }
-      public Medico traerMedico(long id) {
+     
+      public List<Medico> traerMedicos() {
+        return medJpa.findMedicoEntities();
+    }
+     
+    /*  public Medico traerMedico(long id) {
         return medJpa.findMedico(id);
     }
       public ArrayList<Medico> traerListaMedicos() {
@@ -138,7 +149,7 @@ public class ControladoraPersistencia {
           List<Medico> listamed = medJpa.findMedicoEntities();
           ArrayList<Medico> listaMedicos = new ArrayList<Medico>(listamed);
           return  listaMedicos;
-    }
+    }*/
        
       //Reservacion
        public void crearReservacion(Reservacion res) {
@@ -198,5 +209,10 @@ public class ControladoraPersistencia {
         List<Estado> listaEstados = estJpa.findEstadoEntities();
         return new ArrayList<>(listaEstados);
     }
+    
+    public List<Estado> obtenerTiposDeEstados() {
+        return estJpa.findEstadoEntities();
+    }
+
      
 }

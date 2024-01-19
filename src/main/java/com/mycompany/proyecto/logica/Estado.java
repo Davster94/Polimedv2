@@ -1,11 +1,15 @@
 package com.mycompany.proyecto.logica;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 @Entity
@@ -15,9 +19,11 @@ public class Estado implements Serializable {
     //@GeneratedValue(strategy= GenerationType.AUTO)
     //private int id;
      @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     @Basic
-    private String estado;
+    @Column(name="tipo")
+    private String tipo;
 
     public Estado() {
     }
@@ -48,9 +54,8 @@ public class Estado implements Serializable {
         return "Estatus{" + "id=" + id + ", estado=" + estado + '}';
     }*/
 
-    public Estado(Long id, String estado) {
-        this.id = id;
-        this.estado = estado;
+    public Estado(String tipo) {
+        this.tipo = tipo;
     }
 
     public Long getId() {
@@ -61,17 +66,25 @@ public class Estado implements Serializable {
         this.id = id;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public static List<Estado> obtenerTiposDeEstados(EntityManager entityManager) {
+        Query query = entityManager.createQuery("SELECT e FROM Estado e");
+        return query.getResultList();
     }
 
     @Override
     public String toString() {
-        return "Estado{" + "id=" + id + ", estado=" + estado + '}';
+        return "Estado{" +
+                "id=" + id +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
     
     

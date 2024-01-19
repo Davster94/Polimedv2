@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 
-import com.mycompany.proyecto.logica.Controladora;
+import com.mycompany.proyecto.igu.Login;
+/*import com.mycompany.proyecto.logica.Controladora;
 import com.mycompany.proyecto.logica.Especialidad;
 import com.mycompany.proyecto.logica.Estado;
 import com.mycompany.proyecto.logica.Medico;
@@ -9,12 +10,20 @@ import com.mycompany.proyecto.logica.Reservacion;
 import com.mycompany.proyecto.logica.Usuario;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;*/
 
 
 public class Proyecto {
 
     public static void main(String[] args) {
-         Controladora controladora = new Controladora();
+        
+        // Controladora controladora = new Controladora();
+         Login log=new Login();
+         log.setVisible(true);
+         log.setLocationRelativeTo(null);
+         
+    
       // Ejemplo de crear y consultar Pacientes
        /* Paciente nuevoPaciente = new Paciente(Long.MIN_VALUE, "Alejandro", "Macas", "Masculino", "alej@gmail.com", "Quito", "023125469", "", "", "", fechanacimiento, fecharegistro);
         controladora.crearPaciente(nuevoPaciente);
@@ -62,7 +71,7 @@ public class Proyecto {
 
 
 
-        // Crear un objeto de tipo Calendar para obtener la fecha actual
+       /* // Crear un objeto de tipo Calendar para obtener la fecha actual
         Calendar calendar = Calendar.getInstance();
 
         // Obtener la fecha actual
@@ -73,7 +82,7 @@ public class Proyecto {
         java.util.Date fechaRegistro = fechaActual; // Fecha actual como fecha de registro
 
         // Ejemplo de crear y consultar Pacientes
-        Paciente nuevoPaciente = new Paciente(Long.MIN_VALUE, "Marcela", "Guerra", "Femenino", "mar@gmail.com", "Quito", "0231456987", "", "", "", fechaNacimiento, fechaRegistro);
+        Paciente nuevoPaciente = new Paciente(Long.MIN_VALUE, "Marcela", "Guerra", "F", "mar@gmail.com", "Quito", "0231456987", "", "", "", fechaNacimiento, fechaRegistro);
         controladora.crearPaciente(nuevoPaciente);
 
         Paciente pacienteConsultado = controladora.traerPaciente(1); // Ajusta el ID según tu base de datos
@@ -94,18 +103,20 @@ public class Proyecto {
         System.out.println("Especialidad consultada: " + especialidadConsultada);
 
         // Ejemplo de crear y consultar Medico
-        Medico nuevoMedico = new Medico(Long.MIN_VALUE, "María", "Adams", "Femenino", "maradams@gmail.com", "Manabi", "0989452613", fechaNacimiento, fechaRegistro, nuevaEspecialidad);
+        Medico nuevoMedico = new Medico(Long.MIN_VALUE, "María", "Adams", "F", "maradams@gmail.com", "Manabi", "0989452613", fechaNacimiento, fechaRegistro, nuevaEspecialidad);
         controladora.crearMedico(nuevoMedico);
 
         Medico medicoConsultado = controladora.traerMedico(1); // Ajusta el ID según tu base de datos
         System.out.println("Medico consultado: " + medicoConsultado);
 
           // Ejemplo de crear y consultar Estado
-        Estado nuevoEstado = new Estado(Long.MIN_VALUE, "Disponible");
+        Estado nuevoEstado = new Estado("Nuevo Tipo de Estado");
         controladora.crearEstado(nuevoEstado);
+        System.out.println("Nuevo estado creado: " + nuevoEstado);
 
-        Estado estadoConsultado = controladora.traerEstado(1); // Ajusta el ID según tu base de datos
-        System.out.println("Estado consultada: " + estadoConsultado);
+        // Ejemplo de obtener todos los tipos de estados
+        List<Estado> tiposDeEstados = controladora.obtenerTiposDeEstados();
+        System.out.println("Tipos de Estados: " + tiposDeEstados);
         
         // Ejemplo de crear y consultar Reservacion
         Reservacion nuevaReservacion = new Reservacion(Long.MIN_VALUE, "Odontologia", "Abrir historial medico", "", "Dolor de muela", "", "", Boolean.TRUE, fechaActual, fechaActual, fechaRegistro, nuevoEstado, nuevoUsuario, nuevoMedico, nuevoPaciente);
@@ -115,7 +126,7 @@ public class Proyecto {
         System.out.println("Reservacion consultada: " + reservacionConsultada);
 
       
-
+*/
     }
 }
 
